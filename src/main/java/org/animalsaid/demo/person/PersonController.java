@@ -1,9 +1,7 @@
 package org.animalsaid.demo.person;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,11 +12,17 @@ public class PersonController {
     @Autowired
     PersonService personService;
 
-    @GetMapping
-    public List getAllPersons(){
-        return personService.getAllpersons();
+    @GetMapping("/persons")
+    public List<Person> getAllPersons(){
+        return personService.getAllPersons();
     }
-@GetMapping("/allpersons/{id}")
+
+    @PostMapping("/persons")
+    public Person person(@RequestBody Person person){
+        return personService.addNewPerson(person);
+    }
+
+    @GetMapping("/persons/{id}")
     public Optional<Person> getPersonById(@PathVariable long id){
         return personService.getPersonById(id);
     }

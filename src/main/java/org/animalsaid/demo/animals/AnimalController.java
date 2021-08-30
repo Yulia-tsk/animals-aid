@@ -1,9 +1,8 @@
 package org.animalsaid.demo.animals;
 
+import org.animalsaid.demo.person.Person;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -12,14 +11,19 @@ public class AnimalController {
     @Autowired
     private AnimalService animalService;
 
-    @GetMapping("/all")
+    @GetMapping("/animals")
     public List<Animal> getAll(){
 
         return animalService.getAllAnimals() ;
     }
+    @GetMapping("/persons/{personId}/animals")
+    public List<Animal> getAnimalsById(@PathVariable long personId) {
+        return animalService.getAnimalByPersonId(personId);
+    }
 
-    @PostMapping
-    public void addAnimal(Animal animal){
-        animalService.addAnimal(animal);
+    @PostMapping("persons/{personId}/animals")
+    public Animal addAnimal(@RequestBody Animal animal, @PathVariable long personId){
+        animal.setPerson(new Person(personId, ""));
+       return  animalService.addAnimal(animal);
     }
    }

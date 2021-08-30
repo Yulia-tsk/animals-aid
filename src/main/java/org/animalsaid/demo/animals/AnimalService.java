@@ -12,9 +12,7 @@ public class AnimalService {
     @Autowired
     public AnimalRepository animalRepository;
 
-    public AnimalService(AnimalRepository animalRepository) {
-        this.animalRepository = animalRepository;
-    }
+
 
     public List<Animal> getAllAnimals(){
         List<Animal> animals = new ArrayList<>();
@@ -23,12 +21,12 @@ public class AnimalService {
     }
 
     public List<Animal> getAnimalByPersonId(long id) {
-        List<Animal> animalsPerson = new ArrayList<>();
-        animalRepository.findAnimalByPersonId(id).forEach(animalsPerson::add);
+        List<Animal> animalsPerson = new ArrayList<>(animalRepository.findAnimalByPersonId(id));
         return animalsPerson;
     }
 
-    public void addAnimal(Animal animal){
-        animalRepository.save(animal);
+    public Animal addAnimal(Animal animal){
+
+        return animalRepository.save(animal);
     }
 }

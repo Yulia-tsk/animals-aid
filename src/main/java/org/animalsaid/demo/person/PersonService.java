@@ -14,15 +14,15 @@ public class PersonService {
     @Autowired
     PersonRepository personRepository;
 
-    public List getAllpersons(){
+    public List getAllPersons(){
 
         List<Person> persons = new ArrayList<>();
         personRepository.findAll().forEach(persons::add);
         return persons;
     }
 
-    public void addNewPerson(@RequestBody Person person){
-        personRepository.save(person);
+    public Person addNewPerson(@RequestBody Person person){
+        return personRepository.save(person);
     }
 
     public Optional<Person> getPersonById(long id) {
