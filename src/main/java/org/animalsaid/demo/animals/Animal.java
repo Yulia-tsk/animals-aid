@@ -1,5 +1,7 @@
 package org.animalsaid.demo.animals;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
 import org.animalsaid.demo.person.Person;
 
 import javax.persistence.*;
@@ -21,7 +23,7 @@ public class Animal {
     private LocalDate sterilisationDate;
     private String photo;
 
-    private boolean isVisible = false;
+    private boolean isHomeNeeded = false;
 
     @ManyToOne(targetEntity = Person.class, fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name = "person_id")
@@ -45,7 +47,7 @@ public class Animal {
 
     public Animal(long id, String name, String description, Gender gender,
                   LocalDate birthDate, String photo,
-                  boolean isVisible, long personId,
+                  boolean isHomeNeeded, long personId,
                   LocalDate sterilisationDate, String health, String breed) {
         this.id = id;
         this.name = name;
@@ -53,7 +55,7 @@ public class Animal {
         this.gender = gender;
         this.birthDate = birthDate;
         this.photo = photo;
-        this.isVisible = isVisible;
+        this.isHomeNeeded = isHomeNeeded;
         this.person = new Person(personId, "");
         this.sterilisationDate = sterilisationDate;
         this.breed = breed;
@@ -131,7 +133,7 @@ public class Animal {
                 ", birthDate=" + birthDate +
                 ", sterilisationDate=" + sterilisationDate +
                 ", photo='" + photo + '\'' +
-                ", isVisible=" + isVisible +
+                ", isVisible=" + isHomeNeeded +
                 ", person=" + person +
                 '}';
     }

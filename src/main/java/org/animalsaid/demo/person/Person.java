@@ -1,20 +1,31 @@
 package org.animalsaid.demo.person;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.sun.istack.NotNull;
+import org.animalsaid.demo.animals.Animal;
+import org.animalsaid.demo.animals.donation.Donation;
+
+import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Person {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+@NotNull
     private String firstName;
     private String lastName;
     private String email;
     private String phone;
     private String photo;
+    private boolean isActive;
+    private String password;
+    private String address;
+ @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    private Set<Animal> myAnimals;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    private List<Donation> myDonations;
 
     public Person() {
     }
@@ -23,23 +34,80 @@ public class Person {
         this.id = id;
         this.firstName = firstName;
     }
+    public Person(Long id, String firstName, boolean isActive) {
+        this.id = id;
+        this.firstName = firstName;
+        this.setActive(true);
+    }
 
-    public Person(Long id, String firstName, String lastName, String email, String phone, String photo) {
+    public Person(Long id, String firstName, String lastName, String email, String phone, String photo, boolean isActive, String password, String address, Set<Animal> myAnimals, List<Donation> myDonations) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
         this.photo = photo;
+        this.isActive = isActive;
+        this.password = password;
+        this.address = address;
+        this.myAnimals = myAnimals;
+        this.myDonations = myDonations;
     }
 
     public Long getId() {
         return id;
     }
 
+
+
 //    public void setId(Long id) {
 //        this.id = id;
 //    }
+
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Set<Animal> getMyAnimals() {
+        return myAnimals;
+    }
+
+    public void setMyAnimals(Set<Animal> myAnimals) {
+        this.myAnimals = myAnimals;
+    }
+
+    public List<Donation> getMyDonations() {
+        return myDonations;
+    }
+
+    public void setMyDonations(List<Donation> myDonations) {
+        this.myDonations = myDonations;
+    }
+
+    public boolean isActive(boolean b) {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -92,4 +160,6 @@ public class Person {
                 ", photo='" + photo + '\'' +
                 '}';
     }
+
+
 }
