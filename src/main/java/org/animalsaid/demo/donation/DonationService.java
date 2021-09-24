@@ -1,6 +1,5 @@
-package org.animalsaid.demo.animals.donation;
+package org.animalsaid.demo.donation;
 
-import org.animalsaid.demo.person.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +25,7 @@ public Donation addDonation(Donation donation){
     public List<Donation> getDonationsByPersonId(long personId) {
 
     List<Donation> myDonations = new ArrayList<Donation>(donationRepository.findAllByPersonId(personId));
+
     return myDonations;
 
 

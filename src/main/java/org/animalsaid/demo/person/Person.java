@@ -2,9 +2,11 @@ package org.animalsaid.demo.person;
 
 import com.sun.istack.NotNull;
 import org.animalsaid.demo.animals.Animal;
-import org.animalsaid.demo.animals.donation.Donation;
+import org.animalsaid.demo.donation.Donation;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
 import java.util.List;
 import java.util.Set;
 
@@ -15,8 +17,13 @@ public class Person {
     private Long id;
 @NotNull
     private String firstName;
+    @NotNull
     private String lastName;
+    @NotNull
+@Email
     private String email;
+@NotNull
+    @Size(min=10,max=10)
     private String phone;
     private String photo;
     private boolean isActive;
@@ -149,6 +156,7 @@ public class Person {
         this.photo = photo;
     }
 
+
     @Override
     public String toString() {
         return "Person{" +
@@ -158,8 +166,11 @@ public class Person {
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", photo='" + photo + '\'' +
+                ", isActive=" + isActive +
+                ", password='" + password + '\'' +
+                ", address='" + address + '\'' +
+                ", myAnimals=" + myAnimals +
+                ", myDonations=" + myDonations +
                 '}';
     }
-
-
 }

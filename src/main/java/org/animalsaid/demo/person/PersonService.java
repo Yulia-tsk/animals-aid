@@ -30,4 +30,15 @@ public class PersonService {
         return person;
 
     }
+
+    public Person getPersonByPersonId(long id) {
+        Person person = personRepository.findPersonByPersonID(id);
+        return person;
+    }
+public void updatePerson(Person person){
+        personRepository.save(person);
+}
+//public int setFixedActiveFor(long id){
+//        return personRepository.setFixedActiveFor(id);
+//}
 }

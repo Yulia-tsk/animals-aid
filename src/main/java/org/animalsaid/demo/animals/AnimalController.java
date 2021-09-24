@@ -20,8 +20,12 @@ public class AnimalController {
     public List<Animal> getAnimalsById(@PathVariable long personId) {
         return animalService.getAnimalByPersonId(personId);
     }
+//    @GetMapping("/persons/{personId}/animals")
+//    public List<Animal> getAnimalsByPersonId(@PathVariable long personId) {
+//        return animalService.getAnimalByPersonId(personId);
+//    }
 
-    @PostMapping("persons/{personId}/animals")
+    @PostMapping("persons/{personId}/animal")
     public Animal addAnimal(@RequestBody Animal animal, @PathVariable long personId){
         animal.setPerson(new Person(personId, ""));
        return  animalService.addAnimal(animal);

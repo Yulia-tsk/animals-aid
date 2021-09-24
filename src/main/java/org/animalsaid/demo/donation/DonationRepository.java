@@ -1,4 +1,4 @@
-package org.animalsaid.demo.animals.donation;
+package org.animalsaid.demo.donation;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;

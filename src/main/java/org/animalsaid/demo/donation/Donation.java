@@ -1,7 +1,5 @@
-package org.animalsaid.demo.animals.donation;
+package org.animalsaid.demo.donation;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.PropertyAccessor;
 import org.animalsaid.demo.person.Person;
 
 import javax.persistence.*;
@@ -22,7 +20,7 @@ public class Donation {
     private LocalDate now;
 //    private Period period;
     private boolean isSuccess;
-    private Currency currency;
+//    private Currency currency;
 
     public Donation() {
     }
